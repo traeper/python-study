@@ -8,10 +8,11 @@ print("연기 희망 units = " + str(postpone_unit_count))
 # 5 ~ 9. recommendation flow
 
 # 할당된 모든 units, recommend_units 함수를 만들어서 추천하는 기능을 구현하세요.
-total_assigned_units = core.recommend_units(postpone_unit_count)
+pushed_confirmed_units, failed_units = core.recommend_units(postpone_unit_count)
 
-for unit in total_assigned_units:
+for unit in pushed_confirmed_units:
     print(unit)
+
 
 
 
