@@ -12,17 +12,15 @@ def remove_duplicates(values):
 
 def contains(values, obj):
     for value in values:
-        # If value has not been encountered yet,
-        # ... add it to both list and set.
+        # TODO compare with ISA data
         if obj == value:
             return True
-
     return False
 
 # Remove duplicates from this list.
-values = [5, 5, 1, 1, 2, 3, 4, 4, 5]
-result = remove_duplicates(values)
-print(result)
+# values = [5, 5, 1, 1, 2, 3, 4, 4, 5]
+# result = remove_duplicates(values)
+# print(result)
 
 
 values = [('a', 'b', 'd'), ('e','f','g'), 2, 3]
