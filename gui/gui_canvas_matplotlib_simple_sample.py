@@ -67,12 +67,11 @@ def draw_figure(canvas, figure, loc=(0, 0)):
 fig = plt.gcf()  # if using Pyplot then get the figure from the plot
 
 # 1. modify size
-fig.set_size_inches(4, 3)
+fig.set_size_inches(6, 4)
 
 figure_x, figure_y, figure_w, figure_h = fig.bbox.bounds
+# figure_w : 600, h : 400..
 
-# figure_w = 360
-# figure_h = 240
 
 # define the window layout
 
@@ -113,6 +112,7 @@ while True:
 
         values_to_plot = (20 + i, 35 + i, 30 + i, 35 + i, 27 + i)
 
+        # draw bar
         plt.bar(np.arange(len(values_to_plot)), values_to_plot, width)
 
         fig_photo = draw_figure(window.FindElement('canvas').TKCanvas, fig)
