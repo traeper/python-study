@@ -98,16 +98,4 @@ fig_photo = draw_figure(window.FindElement('canvas').TKCanvas, fig)
 while True:
     event, values = window.Layout(layout).Read()
 
-    # values_to_plot = (50, 65, 70, 85, 97)
-    # ind = np.arange(len(values_to_plot))
-    # width = 0.6
-    #
-    # p1 = plt.bar(ind, values_to_plot, width)
-    #
-    # plt.ylabel('Y-Axis Values')
-    # plt.title('Plot Title')
-    # plt.xticks(ind, ('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'))
-    # plt.yticks(np.arange(0, 81, 10))
-    # plt.legend((p1[0],), ('Data Group 1',))
-    #
-    # draw_figure(window.FindElement('canvas').TKCanvas, fig)
+    # TODO HOW TO redraw canvas
