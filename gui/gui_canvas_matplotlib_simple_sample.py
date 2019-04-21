@@ -30,14 +30,14 @@ import matplotlib.pyplot as plt
 
 # data setting
 values_to_plot = (20, 35, 30, 35, 27)
-ind = np.arange(len(values_to_plot))
 width = 0.4
 
-p1 = plt.bar(ind, values_to_plot, width)
+
+p1 = plt.bar(np.arange(len(values_to_plot)), values_to_plot, width)
 
 plt.ylabel('Y-Axis Values')
 plt.title('Plot Title')
-plt.xticks(ind, ('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'))
+plt.xticks(np.arange(len(values_to_plot)), ('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'))
 plt.yticks(np.arange(0, 81, 10))
 plt.legend((p1[0],), ('Data Group 1',))
 
@@ -65,7 +65,14 @@ def draw_figure(canvas, figure, loc=(0, 0)):
 # ------------------------------- Beginning of GUI CODE -------------------------------
 
 fig = plt.gcf()  # if using Pyplot then get the figure from the plot
+
+# 1. modify size
+fig.set_size_inches(4, 3)
+
 figure_x, figure_y, figure_w, figure_h = fig.bbox.bounds
+
+# figure_w = 360
+# figure_h = 240
 
 # define the window layout
 
@@ -82,8 +89,9 @@ layout = [[sg.Text('Plot test', font='Any 18')],
           [sg.Text('APPOINTMENT_STATUS2', size=(20, 1)),
            sg.InputText('Default APPOINTMENT_STATUS2', key='_appointment_status2_', do_not_clear=True)],
           [sg.Text('RESULT (Double Click -> move data to SELECTED table)', size=(50, 1))],
+            [sg.OK(pad=((figure_w / 2, 0), 3), size=(4, 2))],
           [sg.Canvas(size=(figure_w, figure_h), key='canvas')],
-          [sg.OK(pad=((figure_w / 2, 0), 3), size=(4, 2))]]
+          ]
 
 # create the form and show it without the plot
 window = sg.Window('Demo Application - Embedding Matplotlib In PySimpleGUI', force_toplevel=True).Layout(
@@ -95,7 +103,16 @@ fig_photo = draw_figure(window.FindElement('canvas').TKCanvas, fig)
 # show it all again and get buttons
 # event, values = window.Read()
 
+i = 10
+
 while True:
     event, values = window.Layout(layout).Read()
 
-    # TODO HOW TO redraw canvas
+    if event == 'OK':
+        i += 5
+
+        values_to_plot = (20 + i, 35 + i, 30 + i, 35 + i, 27 + i)
+
+        plt.bar(np.arange(len(values_to_plot)), values_to_plot, width)
+
+        fig_photo = draw_figure(window.FindElement('canvas').TKCanvas, fig)
