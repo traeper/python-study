@@ -28,17 +28,19 @@ If you want to change the GUI, make changes to the GUI portion marked below.
 import numpy as np
 import matplotlib.pyplot as plt
 
-# data setting
+# data setting - tuple
 values_to_plot = (20, 35, 30, 35, 27)
 width = 0.4
 
-
+# pandas.dataframe -> {convert} -> numpy
+# data..
 p1 = plt.bar(np.arange(len(values_to_plot)), values_to_plot, width)
 
+# visual?,...
 plt.ylabel('Y-Axis Values')
 plt.title('Plot Title')
 plt.xticks(np.arange(len(values_to_plot)), ('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'))
-plt.yticks(np.arange(0, 81, 10))
+plt.yticks(np.arange(0, 60, 10))
 plt.legend((p1[0],), ('Data Group 1',))
 
 
@@ -105,6 +107,7 @@ fig_photo = draw_figure(window.FindElement('canvas').TKCanvas, fig)
 i = 10
 
 while True:
+    # window라는 객체는 Layout을 품고 있는데, Layout의 Read() 이벤트를 Blocking해서 기다리고 있다.
     event, values = window.Layout(layout).Read()
 
     if event == 'OK':
@@ -113,6 +116,13 @@ while True:
         values_to_plot = (20 + i, 35 + i, 30 + i, 35 + i, 27 + i)
 
         # draw bar
-        plt.bar(np.arange(len(values_to_plot)), values_to_plot, width)
+        p1 = plt.bar(np.arange(len(values_to_plot)), values_to_plot, width)
+
+        # visual?,...
+        plt.ylabel('Y-Axis Values')
+        plt.title('Plot Title')
+        plt.xticks(np.arange(len(values_to_plot)), ('Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'))
+        plt.yticks(np.arange(0, 60, 10))
+        plt.legend((p1[0],), ('Data Group 1',))
 
         fig_photo = draw_figure(window.FindElement('canvas').TKCanvas, fig)
